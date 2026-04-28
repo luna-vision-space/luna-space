@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="banner.jpg" alt="Luna Space banner" />
+</p>
+
 # LUNA SPACE
 
 A digital archive of AI characters, neural artifacts and experimental visual identity.
