@@ -2,7 +2,6 @@
 
 A digital archive of AI characters, neural artifacts and experimental visual identity.
 
----
 
 ## About
 
@@ -16,7 +15,6 @@ Luna Space is a conceptual design project exploring the intersection of:
 This project is not about trends.  
 It is about building **stable, scalable visual identities** that do not depend on changing people, models or production cycles.
 
----
 
 ## Core Concept
 
@@ -35,7 +33,6 @@ Each entity is designed to function inside real product environments:
 - UI systems  
 - visual campaigns  
 
----
 
 ## Featured Entity
 
@@ -57,7 +54,6 @@ A universal fashion model designed to demonstrate:
 VERA is not a campaign face.  
 She is a **scalable system element**.
 
----
 
 ## Project Structure
 
@@ -69,7 +65,6 @@ read-artifact.html → artifact explanation
 read-guide.html → usage guide
 
 
----
 
 ## Purpose
 
@@ -80,7 +75,6 @@ This repository is also used to practice:
 - project structure  
 - GitHub Pages deployment  
 
----
 
 ## Status
 
@@ -92,7 +86,6 @@ Further improvements will include:
 - interactive elements  
 - potential productization  
 
----
 
 ## Author
 
