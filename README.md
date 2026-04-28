@@ -40,26 +40,6 @@ Each entity is designed to function inside real product environments:
 - visual campaigns  
 
 
-## Featured Entity
-
-### VERA
-
-A universal fashion model designed to demonstrate:
-
-- form  
-- silhouette  
-- structure  
-- close-range realism  
-
-**Core traits:**
-- calm  
-- controlled  
-- neutral  
-- non-flirting  
-
-VERA is not a campaign face.  
-She is a **scalable system element**.
-
 
 ## Project Structure
 
