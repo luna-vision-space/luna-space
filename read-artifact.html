@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Артефакт нового времени — Luna Space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f5f6f8;
+  --ink:#0f1015;
+  --muted:#6c6f7a;
+  --line:#d9dbe3;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:"Space Grotesk",sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+/* ===== HEADER ===== */
+header{
+  padding:40px 80px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:Orbitron;
+}
+
+header a{
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+/* ===== LAYOUT ===== */
+.reader{
+  max-width:1400px;
+  margin:0 auto;
+  padding:80px;
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:80px;
+}
+
+/* ===== ARTICLE ===== */
+.article{
+  background:#fff;
+  padding:100px;
+  position:relative;
+}
+
+.article h1{
+  font-family:Orbitron;
+  font-size:48px;
+  margin-bottom:24px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:80px;
+}
+
+.article h2{
+  font-family:Orbitron;
+  font-size:16px;
+  letter-spacing:2px;
+  margin:100px 0 32px;
+}
+
+.article p{
+  font-size:18px;
+  line-height:2;
+  margin-bottom:32px;
+}
+
+/* ===== PAYWALL ===== */
+.paywall{
+  position:relative;
+  margin-top:80px;
+  padding-top:120px;
+}
+
+.paywall::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-320px;
+  height:320px;
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0.85),
+    #ffffff
+  );
+  pointer-events:none;
+}
+
+
+/* ===== LOCK BLOCK ===== */
+.lock-block{
+  text-align:center;
+  border-top:1px solid var(--line);
+  padding-top:80px;
+}
+
+.lock-icon{
+  width:48px;
+  height:48px;
+  margin:0 auto 24px;
+  position:relative;
+}
+
+.lock-icon::before{
+  content:"";
+  position:absolute;
+  left:8px;
+  right:8px;
+  bottom:6px;
+  height:22px;
+  border:2px solid var(--ink);
+}
+
+.lock-icon::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:14px;
+  width:20px;
+  height:20px;
+  border:2px solid var(--ink);
+  border-bottom:none;
+  border-radius:20px 20px 0 0;
+}
+
+
+.lock-title{
+  font-family:Orbitron;
+  font-size:14px;
+  letter-spacing:2px;
+  margin-bottom:24px;
+}
+
+.lock-text{
+  max-width:520px;
+  margin:0 auto 40px;
+  font-size:16px;
+  line-height:1.8;
+  color:var(--muted);
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  position:relative;
+  padding:16px 36px;
+  border:1px solid var(--ink);
+  background:transparent;
+  font-family:Orbitron;
+  cursor:pointer;
+  overflow:hidden;
+}
+
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,.6),
+    transparent 70%
+  );
+  transform:translateX(-100%);
+  transition:.7s;
+}
+
+.btn:hover::before{
+  transform:translateX(100%);
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  position:sticky;
+  top:80px;
+}
+
+.cover{
+  background:#e6e7f2;
+  height:420px;
+  margin-bottom:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Orbitron;
+  color:var(--muted);
+}
+
+.meta{
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
+  margin-bottom:40px;
+}
+
+.meta strong{color:var(--ink)}
+
+.toc h4{
+  font-family:Orbitron;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.toc a{
+  display:block;
+  font-size:14px;
+  text-decoration:none;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+
+.toc a:hover{color:var(--ink)}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  font-family:Orbitron;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+  padding:100px 0;
+}
+
+footer a{
+  color:inherit;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:1100px){
+  .reader{grid-template-columns:1fr;padding:40px}
+  .sidebar{position:static}
+  .article{padding:60px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>LUNA SPACE</div>
+  <a href="showcase.html">← ВЕРНУТЬСЯ К ВИТРИНЕ</a>
+</header>
+
+<section class="reader">
+
+<article class="article">
+
+<h1>Артефакт нового времени</h1>
+
+<div class="subtitle">
+Исследование связи нейробиологии, квантовой механики,
+искусственного интеллекта и человеческого сознания.
+</div>
+
+<p>
+Цифровые сущности — это медиаторы между смыслом и вниманием.
+</p>
+
+<p>
+Они не создаются для масштабирования —
+они создаются для точного присутствия.
+</p>
+
+<p>
+Когда форма становится устойчивой,
+она начинает работать автономно,
+вне участия автора.
+</p>
+
+<p>
+Форма становится инструментом только тогда,
+когда перестаёт быть декоративной. Именно в этот момент цифровая сущность
+перестаёт быть изображением
+и начинает функционировать как медиум.
+</p>
+
+
+<div class="paywall">
+
+  <div class="lock-block">
+
+    <div class="lock-icon"></div>
+
+    <div class="lock-text">
+      Дальше — не для всех
+    </div>
+
+    <div class="lock-text">
+      Этот текст — результат длительной работы и размышлений.
+Если он оказался для вас ценным, вы можете поддержать его продолжение.
+    </div> 
+
+    <button class="btn">☕ Угостить чашкой кофе</button>
+
+  </div>
+
+</div>
+
+
+</article>
+
+<aside class="sidebar">
+
+<div class="cover">COVER</div>
+
+<div class="meta">
+<strong>Автор:</strong> Luna Space<br>
+<strong>Формат:</strong> Editorial Artifact<br>
+<strong>Год:</strong> 2026
+</div>
+
+<div class="toc">
+  <h4>СОДЕРЖАНИЕ</h4>
+  <a href="#">Введение</a>
+  <a href="#">Глубинный уровень</a>
+</div>
+
+</aside>
+
+</section>
+
+<footer>
+© 2026 Luna Space ·
+<a href="terms.html">Terms of Service</a>
+<a href="privacy.html">Privacy Policy</a>
+</footer>
+
+</body>
+</html>

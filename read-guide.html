@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Гайд — Luna Space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f5f6f8;
+  --ink:#0f1015;
+  --muted:#6c6f7a;
+  --line:#d9dbe3;
+  --accent:#8f96ff;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:"Space Grotesk",sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+/* HEADER */
+header{
+  padding:40px 80px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:Orbitron;
+}
+
+header a{
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+/* LAYOUT */
+.reader{
+  max-width:1400px;
+  margin:0 auto;
+  padding:80px;
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:80px;
+}
+
+/* ARTICLE */
+.article{
+  background:#fff;
+  padding:100px;
+}
+
+.article h1{
+  font-family:Orbitron;
+  font-size:48px;
+  margin-bottom:24px;
+}
+
+.article .subtitle{
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:80px;
+}
+
+.article h2{
+  font-family:Orbitron;
+  font-size:16px;
+  letter-spacing:2px;
+  margin:100px 0 32px;
+}
+
+.article p{
+  font-size:18px;
+  line-height:2;
+  margin-bottom:32px;
+}
+
+.editor-note{
+  border-left:2px solid var(--ink);
+  padding-left:24px;
+  margin:60px 0;
+  font-style:italic;
+  color:var(--muted);
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:sticky;
+  top:80px;
+}
+
+.cover{
+  background:#e6e7f2;
+  height:420px;
+  margin-bottom:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Orbitron;
+  color:var(--muted);
+}
+
+.meta{
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
+  margin-bottom:40px;
+}
+
+.meta strong{
+  color:var(--ink);
+  font-weight:500;
+}
+
+/* TOC */
+.toc h4{
+  font-family:Orbitron;
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.toc a{
+  display:block;
+  font-size:14px;
+  text-decoration:none;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+
+.toc a:hover{color:var(--ink)}
+
+/* RATING */
+.rating{
+  margin-top:80px;
+  font-size:14px;
+}
+
+.stars span{
+  cursor:pointer;
+  font-size:20px;
+  color:#ccc;
+}
+
+.stars span:hover,
+.stars span.active{
+  color:var(--accent);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-family:Orbitron;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+  padding:100px 0;
+}
+
+footer a{
+  color:inherit;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+/* MOBILE */
+@media(max-width:1100px){
+  .reader{
+    grid-template-columns:1fr;
+    padding:40px;
+  }
+  .sidebar{position:static}
+  .article{padding:60px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>LUNA SPACE</div>
+  <a href="showcase.html">← ВЕРНУТЬСЯ К ВИТРИНЕ</a>
+</header>
+
+<section class="reader">
+
+<article class="article">
+
+<h1 id="intro">Гайд по созданию цифровых сущностей</h1>
+
+<div class="subtitle">
+Практический и воспроизводимый подход к созданию
+нейроперсонажей, визуальных аватаров и цифровых идентичностей.
+</div>
+
+<p>
+В эпоху перенасыщенного контента
+цифровое присутствие перестаёт быть формальностью.
+Оно становится интерфейсом между автором и аудиторией.
+</p>
+
+<div class="editor-note">
+Это не гайд про виральность.  
+Это гайд про контроль, последовательность и авторство.
+</div>
+
+<h2 id="visual">STEP 1 — ВИЗУАЛЬНАЯ ИДЕНТИЧНОСТЬ</h2>
+
+<p>
+Аватар — это визуальный якорь.
+Он формирует первое впечатление
+и задаёт уровень доверия.
+</p>
+
+<h2 id="voice">STEP 2 — ГОЛОС</h2>
+
+<p>
+Голос — самый быстрый способ разрушить иллюзию,
+если он не совпадает с образом.
+</p>
+
+<h2 id="synthesis">STEP 3 — СИНТЕЗ</h2>
+
+<p>
+Финальный этап — сборка.
+Краткие сценарии и сдержанная подача
+работают лучше, чем эмоциональные монологи.
+</p>
+
+</article>
+
+<aside class="sidebar">
+
+<div class="cover">
+  COVER IMAGE
+</div>
+
+<div class="meta">
+<strong>Автор:</strong> Luna Space<br>
+<strong>Формат:</strong> Editorial Guide<br>
+<strong>Дата:</strong> 2026
+</div>
+
+<div class="toc">
+  <h4>СОДЕРЖАНИЕ</h4>
+  <a href="#intro">Введение</a>
+  <a href="#visual">Визуал</a>
+  <a href="#voice">Голос</a>
+  <a href="#synthesis">Синтез</a>
+</div>
+
+<div class="rating">
+  <div>Оценить материал</div>
+  <div class="stars">
+    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+  </div>
+</div>
+
+</aside>
+
+</section>
+
+<footer>
+© 2026 Luna Space ·
+<a href="terms.html">Terms of Service</a>
+<a href="privacy.html">Privacy Policy</a>
+</footer>
+
+</body>
+</html>

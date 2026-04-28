@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Luna Space — Archive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f5f6f8;
+  --ink:#0f1015;
+  --muted:#6b6f7c;
+  --accent:#7f82ff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:40px 80px;
+}
+
+header .logo{
+  font-family:Orbitron,sans-serif;
+  letter-spacing:3px;
+}
+
+header a{
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+/* SECTIONS */
+section{
+  padding:80px;
+}
+
+.section-title{
+  font-family:Orbitron,sans-serif;
+  font-size:12px;
+  letter-spacing:3px;
+  color:var(--muted);
+  margin-bottom:48px;
+}
+
+/* NEURAL CHARACTERS */
+.entities-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+  gap:64px;
+}
+
+.entity-card{
+  text-decoration:none;
+  color:var(--ink);
+}
+
+.entity-line{
+  height:1px;
+  background:rgba(0,0,0,.2);
+  margin-bottom:32px;
+}
+
+.entity-body{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:28px;
+}
+
+.entity-img{
+  width:140px;
+  height:140px;
+  background:linear-gradient(135deg,#d9dbff,#bfc2ff);
+}
+
+.entity-meta h3{
+  font-family:Orbitron,sans-serif;
+  margin-bottom:14px;
+}
+
+.entity-meta ul{
+  list-style:none;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.entity-cta{
+  margin-top:24px;
+  font-family:Orbitron,sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--accent);
+  opacity:0;
+  transition:.3s;
+}
+
+.entity-card:hover .entity-cta{
+  opacity:1;
+}
+
+.entity-card:hover{
+  transform:translateY(-4px);
+  transition:.3s;
+}
+
+/* AI MUSIC */
+.music{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:48px;
+}
+
+iframe{
+  width:100%;
+  height:320px;
+  border:none;
+}
+
+.playlist{
+  max-height:320px;
+  overflow-y:auto;
+  border-left:1px solid rgba(0,0,0,.15);
+  padding-left:24px;
+}
+
+.track{
+  padding:12px 0;
+  font-family:Orbitron,sans-serif;
+  font-size:12px;
+  cursor:pointer;
+  color:var(--muted);
+}
+
+.track.active{
+  color:var(--accent);
+}
+
+/* BOOKS */
+.books{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(420px,1fr));
+  gap:64px;
+}
+
+.book-item{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:48px;
+  align-items:start;
+}
+
+.book{
+  width:220px;
+  height:320px;
+  perspective:1200px;
+  cursor:pointer;
+}
+
+.book-inner{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:.8s;
+}
+
+.book.flipped .book-inner{
+  transform:rotateY(180deg);
+}
+
+.book-face{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+}
+
+.book-front{
+  background:linear-gradient(135deg,#d8d9ff,#b6b8ff);
+}
+
+.book-back{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.15);
+  transform:rotateY(180deg);
+}
+
+.book-text h3{
+  font-family:Orbitron,sans-serif;
+  margin-bottom:16px;
+}
+
+.book-text p{
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:24px;
+}
+
+.book-text button{
+  position:relative;
+  padding:14px 40px;
+  font-family:Orbitron,sans-serif;
+  background:none;
+  border:1px solid var(--ink);
+  cursor:pointer;
+  overflow:hidden;
+}
+
+.book-text button::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,.8),
+    transparent 70%
+  );
+  transform:translateX(-100%);
+  transition:.7s;
+}
+
+.book-text button:hover::before{
+  transform:translateX(100%);
+}
+
+/* FOOTER */
+footer{
+  padding:40px 80px;
+  font-size:12px;
+  color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">LUNA SPACE</div>
+  <a href="index.html">← ВЫЙТИ ИЗ ПРОСТРАНСТВА</a>
+</header>
+
+<section>
+  <div class="section-title">НЕЙРОПЕРСОНАЖИ</div>
+
+  <div class="entities-grid">
+
+    <a class="entity-card" href="entity-vera.html">
+      <div class="entity-line"></div>
+      <div class="entity-body">
+        <div class="entity-img"></div>
+        <div class="entity-meta">
+          <h3>VERA</h3>
+          <ul>
+            <li>Возраст: 20–25</li>
+            <li>Этнический код: Славянский</li>
+            <li>Назначение: Бьюти / Инфлюенсер</li>
+            <li>Статус: Свободен</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entity-cta">ОТКРЫТЬ ПЕРСОНАЖ →</div>
+    </a>
+
+    <a class="entity-card" href="#">
+      <div class="entity-line"></div>
+      <div class="entity-body">
+        <div class="entity-img"></div>
+        <div class="entity-meta">
+          <h3>Helix</h3>
+          <ul>
+            <li>Возраст: 25–30</li>
+            <li>Этнический код: Азиатский</li>
+            <li>Назначение: Фэшн / Модель</li>
+            <li>Статус: Забронирован</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entity-cta">ОТКРЫТЬ ПЕРСОНАЖ →</div>
+    </a>
+
+    <a class="entity-card" href="#">
+      <div class="entity-line"></div>
+      <div class="entity-body">
+        <div class="entity-img"></div>
+        <div class="entity-meta">
+          <h3>Null</h3>
+          <ul>
+            <li>Возраст: 30–35</li>
+            <li>Этнический код: Не определён</li>
+            <li>Назначение: Консультант / Бренд</li>
+            <li>Статус: Приобретён</li>
+          </ul>
+        </div>
+      </div>
+      <div class="entity-cta">ОТКРЫТЬ ПЕРСОНАЖ →</div>
+    </a>
+
+  </div>
+</section>
+
+<section>
+  <div class="section-title">AI МУЗЫКА</div>
+
+  <div class="music">
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID"></iframe>
+      
+
+    <div class="playlist">
+      <div class="track active">TRACK 01 — Neural Drift</div>
+      <div class="track">TRACK 02 — Quantum Memory</div>
+      <div class="track">TRACK 03 — Synthetic Pulse</div>
+      <div class="track">TRACK 04 — Signal Collapse</div>
+      <div class="track">TRACK 05 — Cognitive Echo</div>
+      <div class="track">TRACK 06 — Digital Breath</div>
+      <div class="track">TRACK 07 — Neural Bloom</div>
+      <div class="track">TRACK 08 — Void Harmony</div>
+      <div class="track">TRACK 09 — Data Skin</div>
+      <div class="track">TRACK 10 — Artificial Dawn</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">КНИГИ И АРТЕФАКТЫ</div>
+
+  <div class="books">
+
+    <div class="book-item">
+      <div class="book" onclick="this.classList.toggle('flipped')">
+        <div class="book-inner">
+          <div class="book-face book-front"></div>
+          <div class="book-face book-back"></div>
+        </div>
+      </div>
+      <div class="book-text">
+        <h3>Артефакт нового времени</h3>
+        <p>
+          Исследование связи нейробиологии, квантовой механики,
+          ИИ и человеческого сознания.
+        </p>
+        <button><a href="read-artifact.html">Читать</a></button>
+      </div>
+    </div>
+
+  <div class="book-item">
+      <div class="book" onclick="this.classList.toggle('flipped')">
+        <div class="book-inner">
+          <div class="book-face book-front"></div>
+          <div class="book-face book-back"></div>
+        </div>
+      </div>
+      <div class="book-text">
+        <h3>Гайд по созданию цифровых сущностей</h3>
+        <p>
+          Практический подход к созданию нейромузыки,
+          персонажей и собственных цифровых процессов.
+        </p>
+        <button><a href="read-guide.html">Читать</a></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 All rights reserved.
+  <a href="terms.html">Terms of Service</a>
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+</body>
+</html>

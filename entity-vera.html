@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>VERA — Digital Entity</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f5f6f8;
+  --ink:#0f1015;
+  --muted:#6c6f7a;
+  --accent:#8f96ff;
+  --line:#d9dbe3;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:"Space Grotesk",sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  position: relative;
+  display: inline-block;
+  padding: 18px 48px;
+  font-family: Orbitron, sans-serif;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.btn::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.6),
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform .7s;
+}
+
+.btn:hover::before{
+  transform: translateX(100%);
+}
+
+/* ===== HEADER ===== */
+header{
+  padding:40px 80px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:Orbitron;
+}
+
+header a{
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+/* ===== LAYOUT ===== */
+.container{padding:0 80px 140px}
+
+/* ===== HERO ===== */
+.entity-hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  margin-bottom:120px;
+}
+
+.entity-visual{
+  height:520px;
+  background:#e6e7f2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Orbitron;
+  color:var(--muted);
+}
+
+.entity-info h1{
+  font-family:Orbitron;
+  font-size:96px;
+  margin-bottom:24px;
+}
+
+.entity-desc{color:var(--muted);line-height:1.8;margin-bottom:28px}
+.entity-spec{line-height:1.8;margin-bottom:28px}
+
+.status{
+  display:inline-block;
+  font-family:Orbitron;
+  font-size:12px;
+  padding:6px 14px;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  margin-bottom:28px;
+}
+
+/* tooltip */
+.info-note{
+  color:var(--accent);
+  cursor:pointer;
+  position:relative;
+  width:max-content;
+}
+
+.tooltip{
+  position:absolute;
+  top:120%;
+  left:0;
+  background:white;
+  border:1px solid var(--line);
+  padding:16px;
+  width:360px;
+  font-size:13px;
+  color:var(--muted);
+  display:none;
+}
+.info-note.active .tooltip{display:block}
+
+/* ===== SECTION ===== */
+.section-title{
+  font-family:Orbitron;
+  letter-spacing:3px;
+  font-size:14px;
+  margin-bottom:32px;
+}
+
+/* ===== CAROUSEL ===== */
+.carousel-track{
+  display:flex;
+  gap:40px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:20px;
+}
+
+.carousel-track::-webkit-scrollbar{display:none}
+
+.card{
+  min-width:360px;
+  background:white;
+  scroll-snap-align:start;
+  cursor:pointer;
+  transition:.3s;
+}
+.card:hover{transform:translateY(-4px)}
+
+.card img{
+  width:100%;
+  display:block;
+}
+
+/* ===== FULLSCREEN VIEW ===== */
+.viewer{
+  position:fixed;
+  inset:0;
+  background:rgba(15,16,21,.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+.viewer img{
+  max-width:90vw;
+  max-height:90vh;
+}
+
+/* ===== PACKAGES ===== */
+.packages{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+  margin-top:80px;
+}
+
+.package{
+  padding:40px;
+  border-top:1px solid var(--ink);
+  overflow:hidden;
+}
+
+.package h3{
+  font-family:Orbitron;
+  margin-bottom:20px;
+}
+
+.package ul{
+  padding-left:18px;
+  line-height:1.8;
+  color:var(--muted);
+  margin-bottom:30px;
+}
+
+.price{
+  font-family:Orbitron;
+  font-size:20px;
+  margin-bottom:20px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  font-family:Orbitron;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+  padding:60px 0;
+}
+
+footer a{
+  color:inherit;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+/* ===== REQUEST MODAL ===== */
+.request-modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1000;
+}
+
+.request-modal.active{display:block}
+
+.request-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+}
+
+.request-box{
+  position: relative;
+  max-width: 520px;
+  margin: 8vh auto;
+  padding: 48px;
+  background: #fff;
+  border: 1px solid var(--ink);
+  box-shadow: 0 40px 120px rgba(0,0,0,.12);
+}
+
+.close-modal{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.package-label{
+  display: inline-block;
+  margin: 24px 0;
+  padding: 6px 12px;
+  border: 1px solid var(--ink);
+  font-family: Orbitron;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* ===== FORM ===== */
+.request-box form{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.request-box label{
+  font-family:Orbitron;
+  font-size:12px;
+  letter-spacing:1px;
+}
+
+.request-box input,
+.request-box textarea{
+  width:100%;
+  padding:14px 16px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:14px;
+  border:1px solid var(--line);
+}
+
+.request-box textarea{
+  min-height:140px;
+  resize:vertical;
+}
+
+.request-box .btn.submit{
+  margin-top:12px;
+  align-self:flex-start;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>LUNA SPACE</div>
+  <a href="showcase.html">← ВЕРНУТЬСЯ К ВИТРИНЕ</a>
+</header>
+
+<div class="container">
+
+<section class="entity-hero">
+  <div class="entity-visual">3D HEAD PLACEHOLDER</div>
+
+  <div class="entity-info">
+    <h1>VERA</h1>
+
+    <div class="entity-desc">
+      Универсальная нейроперсона для fashion, beauty и бренд-коммуникаций.
+      Создана для долгосрочного использования и визуальной стабильности.
+    </div>
+
+    <div class="entity-spec">
+      Возраст: 25–30<br>
+      Этнический код: Европейский<br>
+      Роль: Модель / Инфлюенсер / Бренд-персона
+    </div>
+
+    <div class="status">ДОСТУПНА</div>
+
+    <div class="info-note" id="infoNote">
+      ℹ️ Условия владения
+      <div class="tooltip">
+        Каждая сущность создаётся в единственном экземпляре,
+        сопровождается сертификатом авторства
+        и не продаётся повторно.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">ENTITY ARCHIVE</div>
+
+  <div class="carousel-track">
+    <div class="card"><img src="profile.jpg"></div>
+    <div class="card"><img src="why.jpg"></div>
+    <div class="card"><img src="real.jpg"></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-title">ACQUISITION OPTIONS</div>
+
+  <div class="packages">
+    <div class="package">
+      <h3>STANDARD</h3>
+      <ul>
+        <li>Готовый персонаж</li>
+        <li>Лицензия использования</li>
+        <li>Сертификат авторства</li>
+      </ul>
+      <div class="price">$1 000</div>
+      <button class="btn open-request" data-package="standard">Оставить заявку</button>
+    </div>
+
+    <div class="package">
+      <h3>ADAPTIVE</h3>
+      <ul>
+        <li>Кастомизация</li>
+        <li>Промт-архитектура</li>
+        <li>Поддержка внедрения</li>
+      </ul>
+      <div class="price">$3 000</div>
+      <button class="btn open-request" data-package="adaptive">Оставить заявку</button>
+    </div>
+
+    <div class="package">
+      <h3>REPRESENTATION</h3>
+      <ul>
+        <li>Эксклюзивное представительство</li>
+        <li>Долгосрочное сопровождение</li>
+        <li>Интеграция в бизнес</li>
+      </ul>
+      <div class="price">от $500 / мес</div>
+      <button class="btn open-request" data-package="representation">Оставить заявку</button>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  © 2026 All rights reserved.
+  <a href="terms.html">Terms of Service</a>
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+<div class="viewer" id="viewer">
+  <img src="">
+</div>
+
+<div class="request-modal" id="requestModal">
+  <div class="request-overlay"></div>
+
+  <div class="request-box">
+    <button class="close-modal">×</button>
+
+    <h2>Заявка на приобретение</h2>
+    <p>Все запросы рассматриваются вручную. Персонаж передаётся в единственном экземпляре.</p>
+
+    <div class="package-label" id="selectedPackage"></div>
+
+    <form>
+      <label>Проект / компания</label>
+      <input type="text">
+
+      <label>Email</label>
+      <input type="email" required>
+      
+      <label>Комментарий</label>
+      <textarea></textarea>
+
+      <button type="submit" class="btn submit">Отправить запрос</button>
+    </form>
+  </div>
+</div>
+
+<script>
+document.getElementById("infoNote")
+  .addEventListener("click",e=>e.currentTarget.classList.toggle("active"));
+
+const viewer=document.getElementById("viewer");
+const viewerImg=viewer.querySelector("img");
+
+document.querySelectorAll(".card img").forEach(img=>{
+  img.onclick=()=>{
+    viewerImg.src=img.src;
+    viewer.style.display="flex";
+  }
+});
+viewer.onclick=()=>viewer.style.display="none";
+
+const modal=document.getElementById("requestModal");
+const label=document.getElementById("selectedPackage");
+
+document.querySelectorAll(".open-request").forEach(btn=>{
+  btn.onclick=()=>{
+    label.textContent="PACKAGE: "+btn.dataset.package.toUpperCase();
+    modal.classList.add("active");
+  };
+});
+
+document.querySelector(".close-modal").onclick=()=>modal.classList.remove("active");
+document.querySelector(".request-overlay").onclick=()=>modal.classList.remove("active");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Luna Space</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#0f1015;
+  --muted:#7a7e8c;
+  --accent:#8f90ff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Space Grotesk,sans-serif;
+  background:
+    radial-gradient(circle at 60% 40%, #ffffff, #f1f2f8);
+  color:var(--ink);
+  overflow:hidden;
+}
+
+/* TOP */
+.tagline{
+  position:absolute;
+  top:40px;
+  left:8%;
+  font-family:Orbitron,sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+.sound-toggle{
+  position:absolute;
+  top:36px;
+  right:48px;
+  font-family:Orbitron,sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  cursor:pointer;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:0 8%;
+}
+
+.hero-text{
+  max-width:560px;
+}
+
+h1{
+  font-family:Orbitron,sans-serif;
+  font-size:72px;
+  line-height:1;
+  margin-bottom:28px;
+}
+
+h1 span{color:var(--accent)}
+
+p{
+  font-size:18px;
+  color:var(--muted);
+  margin-bottom:56px;
+}
+
+/* CTA */
+.btn{
+  position:relative;
+  display:inline-block;
+  padding:20px 56px;
+  font-family:Orbitron,sans-serif;
+  text-decoration:none;
+  color:var(--ink);
+  border:1px solid var(--ink);
+  overflow:hidden;
+}
+
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 25%,
+      rgba(255,255,255,.9),
+      transparent 75%
+    );
+  transform:translateX(-120%);
+  transition:1s;
+}
+
+.btn:hover::before{
+  transform:translateX(120%);
+}
+
+/* MATERIAL (TEMP) */
+.material-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+svg{
+  width:460px;
+  height:420px;
+}
+
+/* FOOTER */
+footer{
+  position:absolute;
+  bottom:26px;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:0 8%;
+  font-family:Orbitron,sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+footer a{
+  color:var(--muted);
+  text-decoration:none;
+  margin-left:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="tagline">
+  NEURAL CHARACTERS · AI MUSIC · DIGITAL ARTEFACTS
+</div>
+
+<div class="sound-toggle" id="soundToggle">
+  SOUND OFF
+</div>
+
+<section class="hero">
+
+  <div class="hero-text">
+    <h1>LUNA<br><span>SPACE</span></h1>
+
+    <p>
+      В этом пространстве формируются цифровые сущности,  
+      исследуется материя интеллекта  
+      и создаются новые формы восприятия.
+    </p>
+
+    <a href="showcase.html" class="btn">
+      ВОЙТИ В ПРОСТРАНСТВО →
+    </a>
+  </div>
+
+  <div class="material-wrap">
+
+<svg viewBox="0 0 500 450">
+  <defs>
+    <filter id="softNoise">
+      <feTurbulence
+        id="noise"
+        type="fractalNoise"
+        baseFrequency="0.015"
+        numOctaves="2"
+        seed="5"/>
+      <feDisplacementMap
+        in="SourceGraphic"
+        scale="18"/>
+    </filter>
+
+    <radialGradient id="grad" cx="45%" cy="35%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#e6e8ff"/>
+      <stop offset="70%" stop-color="#b9bde6"/>
+      <stop offset="100%" stop-color="#8a8ec4"/>
+    </radialGradient>
+
+    <filter id="edgeBlur">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <path
+    id="blob"
+    d="
+      M250,80
+      C360,90 430,180 410,270
+      C390,360 290,400 200,390
+      C110,380 80,280 100,190
+      C120,100 180,70 250,80
+    "
+    fill="url(#grad)"
+    filter="url(#softNoise)"
+  />
+
+  <use href="#blob" filter="url(#edgeBlur)" opacity="0.45"/>
+
+</svg>
+
+  </div>
+
+</section>
+
+<footer>
+  © 2026 All rights reserved.
+  <a href="terms.html">Terms of Service</a>
+  <a href="privacy.html">Privacy Policy</a>
+</footer>
+
+<script>
+const toggle = document.getElementById('soundToggle');
+const noise = document.getElementById('noise');
+
+let audioCtx, analyser, data;
+let active = false;
+let t = 0;
+let mx = 0, my = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = (window.innerWidth / 2 - e.clientX) / 120;
+  my = (window.innerHeight / 2 - e.clientY) / 120;
+});
+
+toggle.onclick = async () => {
+  if (active) return;
+  active = true;
+  toggle.innerText = 'SOUND ON';
+
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  const src = audioCtx.createMediaStreamSource(stream);
+
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 256;
+  src.connect(analyser);
+  data = new Uint8Array(analyser.frequencyBinCount);
+};
+
+function animate(){
+  t += 0.01;
+
+  let chaos = 0;
+  if (analyser) {
+    analyser.getByteFrequencyData(data);
+    chaos = Math.min(
+      data.reduce((a,b)=>a+b,0) / data.length / 255,
+      0.3
+    );
+  }
+
+  const freq = 0.012 + chaos * 0.01 + Math.sin(t) * 0.001;
+  noise.setAttribute('baseFrequency', freq);
+
+  document.querySelector('svg').style.transform =
+    `translate(${mx}px,${my}px)`;
+
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
